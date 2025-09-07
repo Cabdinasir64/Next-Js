@@ -20,16 +20,24 @@ export default function HomePage() {
       >
         Welcome to My Blog
       </motion.h1>
-
-      <ul className="space-y-4">
+      <motion.p className="p-4 text-lg text-gray-700">
+        Discover the latest articles and insights on various topics.
+      </motion.p>
+      <motion.ul className="space-y-4">
         {blogPosts.map((post) => (
-          <li key={post.id} className="bg-white p-4 rounded-lg shadow hover:shadow-lg transition-shadow">
+          <motion.li
+            key={post.id}
+            className="bg-white p-4 rounded-lg shadow hover:shadow-lg transition-shadow"
+            initial={{ opacity: 0, y: 20, x: -20 }}
+            animate={{ opacity: 1, y: 0, x: 0 }}
+            transition={{ duration: 0.4 }}
+          >
             <Link href={`/blog/${post.id}`} className="text-blue-600 hover:underline">
               {post.title}
             </Link>
-          </li>
+          </motion.li>
         ))}
-      </ul>
+      </motion.ul>
     </div>
   );
 }
