@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
@@ -15,7 +15,12 @@ const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <nav className="w-full bg-white shadow-md fixed top-0 left-0 z-50">
+        <motion.nav
+            initial={{ y: -60, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6 }}
+            className="w-full bg-white shadow-md fixed top-0 left-0 z-50"
+        >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-16 items-center">
                     <Link href="/" className="text-2xl font-bold text-indigo-600">
@@ -42,6 +47,7 @@ const Navbar = () => {
                     </div>
                 </div>
             </div>
+
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
@@ -66,7 +72,7 @@ const Navbar = () => {
                     </motion.div>
                 )}
             </AnimatePresence>
-        </nav>
+        </motion.nav>
     );
 };
 
