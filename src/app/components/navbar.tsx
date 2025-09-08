@@ -1,17 +1,24 @@
 "use client";
+
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { HiMenu, HiX } from "react-icons/hi";
 
-const navLinks = [
+interface NavLink {
+    name: string;
+    href: string;
+}
+
+const navLinks: NavLink[] = [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
     { name: "Blog", href: "/blog" },
+    { name: "Products", href: "/products" },
     { name: "Contact", href: "/contact" },
 ];
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -26,6 +33,7 @@ const Navbar = () => {
                     <Link href="/" className="text-2xl font-bold text-indigo-600">
                         MyLogo
                     </Link>
+
                     <div className="hidden md:flex space-x-6">
                         {navLinks.map((link) => (
                             <Link
@@ -37,6 +45,7 @@ const Navbar = () => {
                             </Link>
                         ))}
                     </div>
+
                     <div className="md:hidden">
                         <button
                             onClick={() => setIsOpen(!isOpen)}
