@@ -3,41 +3,55 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 
-const blogPosts = [
-  { id: '1', title: 'Blog Post 1' },
-  { id: '2', title: 'Blog Post 2' },
-  { id: '3', title: 'Blog Post 3' },
-];
-
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-8">
-      <motion.h1
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="text-4xl font-bold mb-8"
-      >
-        Welcome to My Blog
-      </motion.h1>
-      <motion.p className="p-4 text-lg text-gray-700">
-        Discover the latest articles and insights on various topics.
-      </motion.p>
-      <motion.ul className="space-y-4">
-        {blogPosts.map((post) => (
-          <motion.li
-            key={post.id}
-            className="bg-white p-4 rounded-lg shadow hover:shadow-lg transition-shadow"
-            initial={{ opacity: 0, y: 20, x: -20 }}
-            animate={{ opacity: 1, y: 0, x: 0 }}
-            transition={{ duration: 0.4 }}
+    <section className="relative min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white overflow-hidden">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 0.2, scale: 1 }}
+        transition={{ duration: 1.5 }}
+        className="absolute w-[500px] h-[500px] bg-blue-500 rounded-full blur-3xl opacity-30"
+      />
+
+      <div className="relative z-10 text-center px-6">
+        <motion.h1
+          initial={{ opacity: 0, y: -40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          className="text-5xl md:text-6xl font-extrabold tracking-tight mb-6"
+        >
+          Welcome to <span className="text-blue-400">My Home</span>
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.3 }}
+          className="max-w-2xl mx-auto text-lg md:text-xl text-gray-300 mb-8"
+        >
+          Discover fresh articles, insights, and stories on technology, coding, and more.
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="flex gap-4 justify-center"
+        >
+          <Link
+            href="/blog"
+            className="px-6 py-3 rounded-2xl bg-blue-500 hover:bg-blue-600 text-white font-semibold shadow-lg transition-all"
           >
-            <Link href={`/blog/${post.id}`} className="text-blue-600 hover:underline">
-              {post.title}
-            </Link>
-          </motion.li>
-        ))}
-      </motion.ul>
-    </div>
+            Explore Blog
+          </Link>
+          <Link
+            href="/about"
+            className="px-6 py-3 rounded-2xl bg-white/10 hover:bg-white/20 text-white font-semibold shadow-lg transition-all"
+          >
+            About Me
+          </Link>
+        </motion.div>
+      </div>
+    </section>
   );
 }
