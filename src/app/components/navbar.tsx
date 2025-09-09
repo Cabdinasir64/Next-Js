@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { HiMenu, HiX } from "react-icons/hi";
 
 interface NavLink {
@@ -21,6 +22,7 @@ const navLinks: NavLink[] = [
 
 const Navbar: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const pathname = usePathname(); 
 
     return (
         <motion.nav
@@ -40,7 +42,10 @@ const Navbar: React.FC = () => {
                             <Link
                                 key={link.name}
                                 href={link.href}
-                                className="text-gray-700 hover:text-indigo-600 transition-colors duration-300"
+                                className={`transition-colors duration-300 ${pathname === link.href
+                                        ? "text-indigo-600 font-semibold"
+                                        : "text-gray-700 hover:text-indigo-600"
+                                    }`}
                             >
                                 {link.name}
                             </Link>
@@ -73,7 +78,10 @@ const Navbar: React.FC = () => {
                                     key={link.name}
                                     href={link.href}
                                     onClick={() => setIsOpen(false)}
-                                    className="text-gray-700 hover:text-indigo-600 transition-colors duration-300"
+                                    className={`transition-colors duration-300 ${pathname === link.href
+                                            ? "text-indigo-600 font-semibold"
+                                            : "text-gray-700 hover:text-indigo-600"
+                                        }`}
                                 >
                                     {link.name}
                                 </Link>
